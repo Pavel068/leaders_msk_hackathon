@@ -22,7 +22,9 @@
         "ext-pdo": "*",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.0",
-        "aws/aws-sdk-php": "^3.193"
+        "aws/aws-sdk-php": "^3.193",
+        "twbs/bootstrap": "5.0.2",
+        "yiisoft/yii2-bootstrap5": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
