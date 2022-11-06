@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\Files $model */
 
-$this->title = 'Create Files';
-$this->params['breadcrumbs'][] = ['label' => 'Files', 'url' => ['index']];
+$this->title = 'Добавить';
+$this->params['breadcrumbs'][] = ['label' => 'Файлы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="files-create">
