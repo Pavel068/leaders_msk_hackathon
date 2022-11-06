@@ -26,8 +26,8 @@ class Helper
                         'description' => '',
                         'price' => isset($data['price']) && isset($data['price']['Итого по локальной смете: ']) ? floatval($data['price']['Итого по локальной смете: ']) : null,
                         'location_text' => isset($data['address']) && isset($data['address'][0]) ? $data['address'][0] : null,
-                        'moderator_status' => Status::MODERATOR_PROJECT_STATUS['completed'],
-                        'citizen_status' => null,
+                        'moderator_status' => 'completed',
+                        'citizen_status' => 'new',
                     ], '');
                     $project->save();
                 } catch (\Exception $e) {

@@ -13,6 +13,7 @@ class Status
     ];
 
     const CITIZEN_PROJECT_STATUS = [
+        'new' => 'Не проверен',
         'confirmed' => 'Подтвержден',
         'failed' => 'Не подтвержден'
     ];

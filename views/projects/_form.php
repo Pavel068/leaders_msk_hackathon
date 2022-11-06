@@ -12,25 +12,36 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+    <?php if (Yii::$app->getUser()->identity->role === 'admin'): ?>
+        <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+        <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'price')->textInput() ?>
+        <?= $form->field($model, 'price')->textInput() ?>
 
-    <?= $form->field($model, 'location_text')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'location_text')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'latitude')->textInput() ?>
+        <?= $form->field($model, 'latitude')->textInput() ?>
 
-    <?= $form->field($model, 'longitude')->textInput() ?>
+        <?= $form->field($model, 'longitude')->textInput() ?>
 
-    <?= $form->field($model, 'moderator_status')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'moderator_status')->dropDownList(\app\helpers\Status::MODERATOR_PROJECT_STATUS) ?>
 
-    <?= $form->field($model, 'moderator_status_setter_id')->textInput() ?>
+        <?= $form->field($model, 'moderator_status_setter_id')->textInput([
+            'value' => Yii::$app->getUser()->id,
+            'disabled' => true
+        ]);
+        ?>
 
-    <?= $form->field($model, 'citizen_status')->textInput(['maxlength' => true]) ?>
+    <?php endif; ?>
 
-    <?= $form->field($model, 'citizen_status_setter_id')->textInput() ?>
+    <?= $form->field($model, 'citizen_status')->dropDownList(\app\helpers\Status::CITIZEN_PROJECT_STATUS) ?>
+
+    <?= $form->field($model, 'citizen_status_setter_id')->textInput([
+        'value' => Yii::$app->getUser()->id,
+        'disabled' => true
+    ]);
+    ?>
 
     <div class="form-group mt-3">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

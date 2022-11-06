@@ -30,12 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'login',
-            'password',
             'role',
             'latitude',
             'longitude',
-            //'created_at',
-            //'updated_at',
+            'created_at',
+            'updated_at',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Users $model, $key, $index, $column) {
