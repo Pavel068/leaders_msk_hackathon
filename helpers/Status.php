@@ -5,10 +5,15 @@ namespace app\helpers;
 class Status
 {
     const MODERATOR_PROJECT_STATUS = [
-        'new', 'in_progress', 'completed', 'failed', 'back_to_work'
+        'new' => 'Новый',
+        'in_progress' => 'Выполняется',
+        'completed' => 'Завершено',
+        'failed' => 'Не завершено',
+        'back_to_work' => 'Возвращен в работу'
     ];
 
     const CITIZEN_PROJECT_STATUS = [
-        'confirmed', 'failed'
+        'confirmed' => 'Подтвержден',
+        'failed' => 'Не подтвержден'
     ];
 }

@@ -2,11 +2,15 @@
 
 namespace app\controllers;
 
+use app\helpers\Helper;
 use app\models\Files;
 use app\models\FilesSearch;
+use app\models\Queue;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * FilesController implements the CRUD actions for Files model.
@@ -69,12 +73,8 @@ class FilesController extends Controller
     {
         $model = new Files();
 
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
-        } else {
-            $model->loadDefaultValues();
+        if ($model->load(Yii::$app->request->post())) {
+            $this->uploadFile($model);
         }
 
         return $this->render('create', [
@@ -93,7 +93,13 @@ class FilesController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->file) {
+                $this->uploadFile($model);
+            }
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -130,5 +136,41 @@ class FilesController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function uploadFile($model)
+    {
+        $old_file = $model->url;
+
+        $model->file = UploadedFile::getInstance($model, 'file');
+        if (isset($model->file)) {
+            $model->url = md5(uniqid(true) . rand(0, 999999)) . '.' . $model->file->extension;
+            $model->extension = $model->file->extension;
+
+            $model->user_id = Yii::$app->getUser()->id;
+
+            if ($model->upload()) {
+                if ($model->save()) {
+                    if (file_exists(\Yii::getAlias('@webroot') . $old_file)) {
+                        @unlink(\Yii::getAlias('@webroot') . $old_file);
+                    }
+
+                    $queue = new Queue();
+                    $queue->load([
+                        'file_id' => $model->id,
+                        'status' => 'new'
+                    ], '');
+                    $queue->save();
+
+                    return $this->redirect(['view', 'id' => $model->id]);
+                } else {
+                    return $model->getErrors();
+                }
+            }
+        }
+
+        if ($model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
     }
 }
