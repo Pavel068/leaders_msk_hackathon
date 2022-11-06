@@ -5,25 +5,24 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "trained_models".
+ * This is the model class for table "queue".
  *
  * @property int $id
- * @property string $name
- * @property string|null $description
- * @property string $url
+ * @property int $file_id
+ * @property string|null $status
  * @property string $created_at
  * @property string $updated_at
  *
- * @property Settings[] $settings
+ * @property Files $file
  */
-class TrainedModels extends \yii\db\ActiveRecord
+class Queue extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'trained_models';
+        return 'queue';
     }
 
     /**
@@ -32,11 +31,11 @@ class TrainedModels extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'url'], 'required'],
-            [['description'], 'string'],
+            [['file_id'], 'required'],
+            [['file_id'], 'integer'],
+            [['status'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['name', 'url'], 'string', 'max' => 255],
-            [['name'], 'unique'],
+            [['file_id'], 'exist', 'skipOnError' => true, 'targetClass' => Files::class, 'targetAttribute' => ['file_id' => 'id']],
         ];
     }
 
@@ -47,21 +46,20 @@ class TrainedModels extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Название',
-            'description' => 'Описание',
-            'url' => 'URL',
+            'file_id' => 'Файл',
+            'status' => 'Статус',
             'created_at' => 'Добавлено',
             'updated_at' => 'Обновлено',
         ];
     }
 
     /**
-     * Gets query for [[Settings]].
+     * Gets query for [[File]].
      *
      * @return \yii\db\ActiveQuery
      */
-    public function getSettings()
+    public function getFile()
     {
-        return $this->hasMany(Settings::class, ['trained_model_id' => 'id']);
+        return $this->hasOne(Files::class, ['id' => 'file_id']);
     }
 }

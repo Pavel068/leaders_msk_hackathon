@@ -60,18 +60,18 @@ class Projects extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'description' => 'Description',
-            'price' => 'Price',
-            'location_text' => 'Location Text',
-            'latitude' => 'Latitude',
-            'longitude' => 'Longitude',
-            'moderator_status' => 'Moderator Status',
-            'moderator_status_setter_id' => 'Moderator Status Setter ID',
-            'citizen_status' => 'Citizen Status',
-            'citizen_status_setter_id' => 'Citizen Status Setter ID',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'name' => 'Наименование',
+            'description' => 'Описание',
+            'price' => 'Стоимость',
+            'location_text' => 'Местоположение',
+            'latitude' => 'Широта',
+            'longitude' => 'Долгота',
+            'moderator_status' => 'Статус модератора',
+            'moderator_status_setter_id' => 'Модератор',
+            'citizen_status' => 'Статус проверки',
+            'citizen_status_setter_id' => 'Проверил',
+            'created_at' => 'Добавлено',
+            'updated_at' => 'Обновлено',
         ];
     }
 

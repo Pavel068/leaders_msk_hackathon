@@ -1,6 +1,7 @@
 <?php
 
 /** @var yii\web\View $this */
+
 /** @var string $content */
 
 use app\assets\AppAsset;
@@ -36,24 +37,61 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => '@w
         'brandUrl' => Yii::$app->homeUrl,
         'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top']
     ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav'],
-        'items' => [
-            ['label' => 'Главная', 'url' => ['/site/index']],
-            ['label' => 'Пользователи', 'url' => ['/users/index']],
-            ['label' => 'Проекты', 'url' => ['/projects/index']],
-            ['label' => 'Настройки', 'url' => ['/settings/index']],
-            Yii::$app->user->isGuest
-                ? ['label' => 'Авторизация', 'url' => ['/site/login']]
-                : '<li class="nav-item">'
-                    . Html::beginForm(['/site/logout'])
+
+    $adminItems = [
+        ['label' => 'Проекты', 'url' => ['/projects/index']],
+        ['label' => 'Пользователи', 'url' => ['/users/index']],
+        ['label' => 'Файлы', 'url' => ['/files/index']],
+        ['label' => 'Настройки', 'url' => ['/settings/index']]
+    ];
+
+    $citizenItems = [
+        ['label' => 'Проекты', 'url' => ['/projects/index']],
+    ];
+
+    $items = [];
+    if (Yii::$app->user->isGuest) {
+        $items[] = ['label' => 'Авторизация', 'url' => ['/site/login']];
+    } else {
+        if (Yii::$app->user->identity->role === 'admin') {
+            $items = [
+                ['label' => 'Проекты', 'url' => ['/projects/index']],
+                ['label' => 'Пользователи', 'url' => ['/users/index']],
+                ['label' => 'Файлы', 'url' => ['/files/index']],
+                ['label' => 'Обученные Модели', 'url' => ['/trained-models/index']],
+                ['label' => 'Настройки', 'url' => ['/settings/index']],
+                ['label' => 'Очередь', 'url' => ['/queue/index']],
+                (
+                    '<li>'
+                    . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
                     . Html::submitButton(
-                        'Logout (' . Yii::$app->user->identity->username . ')',
-                        ['class' => 'nav-link btn btn-link logout']
+                        'Выйти',
+                        ['class' => 'btn btn-link logout']
                     )
                     . Html::endForm()
                     . '</li>'
-        ]
+                )
+            ];
+        } else if (Yii::$app->user->identity->role === 'citizen') {
+            $items = [
+                ['label' => 'Проекты', 'url' => ['/projects/index']],
+                (
+                    '<li>'
+                    . Html::beginForm(['/site/logout'], 'post', ['class' => 'form-inline'])
+                    . Html::submitButton(
+                        'Выйти',
+                        ['class' => 'btn btn-link logout']
+                    )
+                    . Html::endForm()
+                    . '</li>'
+                )
+            ];
+        }
+    }
+
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav'],
+        'items' => $items
     ]);
     NavBar::end();
     ?>

@@ -3,13 +3,13 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var app\models\TrainedModels $model */
+/** @var app\models\Queue $model */
 
-$this->title = 'Добавить';
-$this->params['breadcrumbs'][] = ['label' => 'Обученные Модели', 'url' => ['index']];
+$this->title = 'Create Queue';
+$this->params['breadcrumbs'][] = ['label' => 'Queues', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="trained-models-create">
+<div class="queue-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

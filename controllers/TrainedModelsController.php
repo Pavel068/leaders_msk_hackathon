@@ -11,7 +11,7 @@ use yii\filters\VerbFilter;
 /**
  * TrainedModelsController implements the CRUD actions for TrainedModels model.
  */
-class TrainedModelsController extends Controller
+class TrainedModelsController extends _AdminController
 {
     /**
      * @inheritDoc

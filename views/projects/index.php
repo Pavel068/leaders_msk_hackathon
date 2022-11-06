@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var app\models\ProjectsSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Projects';
+$this->title = 'Проекты';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="projects-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Projects', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -27,21 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'id',
             'name',
             'description:ntext',
             'price',
             'location_text',
-            //'latitude',
-            //'longitude',
-            //'moderator_status',
-            //'moderator_status_setter_id',
-            //'citizen_status',
-            //'citizen_status_setter_id',
-            //'created_at',
-            //'updated_at',
+            'moderator_status',
+            'citizen_status',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Projects $model, $key, $index, $column) {

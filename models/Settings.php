@@ -43,9 +43,9 @@ class Settings extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'trained_model_id' => 'Trained Model ID',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'trained_model_id' => 'Используемая Модель',
+            'created_at' => 'Добавлено',
+            'updated_at' => 'Обновлено',
         ];
     }
 

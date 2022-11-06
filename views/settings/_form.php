@@ -14,8 +14,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'trained_model_id')->textInput() ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    <div class="form-group mt-3">
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

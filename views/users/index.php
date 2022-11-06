@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /** @var app\models\UsersSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Users';
+$this->title = 'Пользователи';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="users-index">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Users', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -27,14 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
 
             'id',
             'login',
             'password',
             'role',
             'latitude',
-            //'longitude',
+            'longitude',
             //'created_at',
             //'updated_at',
             [

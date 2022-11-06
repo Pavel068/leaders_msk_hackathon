@@ -4,8 +4,10 @@ $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
 $config = [
+    'language' => 'ru-RU',
     'id' => 'basic',
     'name' => 'App',
+    'defaultRoute' => 'projects/index',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [

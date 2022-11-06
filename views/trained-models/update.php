@@ -8,7 +8,7 @@ use yii\helpers\Html;
 $this->title = 'Update Trained Models: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Trained Models', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Обновить';
 ?>
 <div class="trained-models-update">
 

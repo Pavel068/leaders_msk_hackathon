@@ -1,19 +1,19 @@
 <?php
 
-use app\models\TrainedModels;
+use app\models\Files;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var app\models\TrainedModelsSearch $searchModel */
+/** @var app\models\FilesSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Обученные модели';
+$this->title = 'Файлы';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="trained-models-index">
+<div class="files-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -27,15 +27,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
             'id',
+            'user_id',
             'name',
-            'description:ntext',
             'url:url',
+            'type',
+            'extension',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, TrainedModels $model, $key, $index, $column) {
+                'urlCreator' => function ($action, Files $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],

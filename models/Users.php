@@ -51,13 +51,13 @@ class Users extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'login' => 'Login',
-            'password' => 'Password',
-            'role' => 'Role',
-            'latitude' => 'Latitude',
-            'longitude' => 'Longitude',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'login' => 'Логин',
+            'password' => 'Пароль',
+            'role' => 'Роль',
+            'latitude' => 'Широта',
+            'longitude' => 'Долгота',
+            'created_at' => 'Добавлено',
+            'updated_at' => 'Обновлено',
         ];
     }
 
@@ -79,5 +79,22 @@ class Users extends \yii\db\ActiveRecord
     public function getProjects0()
     {
         return $this->hasMany(Projects::class, ['moderator_status_setter_id' => 'id']);
+    }
+
+    /**
+     * @param $insert
+     * @return bool
+     * @throws \yii\base\Exception
+     */
+    public function beforeSave($insert): bool
+    {
+        if (parent::beforeSave($insert)) {
+            if ($this->isNewRecord && $this->password) {
+                $this->password = Yii::$app->security->generatePasswordHash($this->password);
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 }

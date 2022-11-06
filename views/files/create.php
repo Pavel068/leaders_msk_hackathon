@@ -3,13 +3,13 @@
 use yii\helpers\Html;
 
 /** @var yii\web\View $this */
-/** @var app\models\TrainedModels $model */
+/** @var app\models\Files $model */
 
-$this->title = 'Добавить';
-$this->params['breadcrumbs'][] = ['label' => 'Обученные Модели', 'url' => ['index']];
+$this->title = 'Create Files';
+$this->params['breadcrumbs'][] = ['label' => 'Files', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="trained-models-create">
+<div class="files-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
