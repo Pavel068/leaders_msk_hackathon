@@ -12,9 +12,12 @@ $config = [
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
+        'yandexMapsApi' => [
+            'class' => 'mirocow\yandexmaps\Api',
+        ],
         'request' => [
             'cookieValidationKey' => '9v7bv58294HBr4wKV75vkjhsvwku753b',
             'parsers' => [

@@ -3,6 +3,7 @@
 namespace app\helpers;
 
 use app\models\Projects;
+use GuzzleHttp\Client;
 
 class Helper
 {
@@ -34,6 +35,29 @@ class Helper
 
                 }
             }
+        }
+    }
+
+    /**
+     * @param $address
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public static function decodeAddress($address)
+    {
+        try {
+            $client = new Client();
+            $data = $client->request('GET', 'https://geocode-maps.yandex.ru/1.x', [
+                'query' => [
+                    'apikey' => $_ENV['YANDEX_API_KEY'],
+                    'geocode' => $address,
+                    'format' => 'json'
+                ]
+            ])->getBody();
+
+            return json_decode($data, true);
+        } catch (\Exception $e) {
+            throw $e;
         }
     }
 }

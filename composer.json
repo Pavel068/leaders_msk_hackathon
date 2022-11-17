@@ -12,7 +12,8 @@
         "irc": "irc://irc.freenode.net/yii",
         "source": "https://github.com/yiisoft/yii2"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
         "php": ">=7.1",
         "yiisoft/yii2": "~2.0.14",
@@ -24,7 +25,10 @@
         "guzzlehttp/guzzle": "^7.0",
         "aws/aws-sdk-php": "^3.193",
         "twbs/bootstrap": "5.0.2",
-        "yiisoft/yii2-bootstrap5": "^2.0"
+        "yiisoft/yii2-bootstrap5": "^2.0",
+        "mirocow/yii2-yandex-maps" : "*",
+        "stalkerrr/yii2-yandex-map": "*"
+
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
@@ -73,6 +77,10 @@
         {
             "type": "composer",
             "url": "https://asset-packagist.org"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/mirocow/yii2-yandex-maps.git"
         }
     ]
 }

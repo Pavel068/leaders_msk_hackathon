@@ -40,6 +40,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => '@w
 
     $adminItems = [
         ['label' => 'Проекты', 'url' => ['/projects/index']],
+        ['label' => 'Карта', 'url' => ['/maps/index']],
         ['label' => 'Пользователи', 'url' => ['/users/index']],
         ['label' => 'Файлы', 'url' => ['/files/index']],
         ['label' => 'Настройки', 'url' => ['/settings/index']]
@@ -56,6 +57,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => '@w
         if (Yii::$app->user->identity->role === 'admin') {
             $items = [
                 ['label' => 'Проекты', 'url' => ['/projects/index']],
+                ['label' => 'Карта', 'url' => ['/maps/index']],
                 ['label' => 'Пользователи', 'url' => ['/users/index']],
                 ['label' => 'Файлы', 'url' => ['/files/index']],
                 ['label' => 'Обученные Модели', 'url' => ['/trained-models/index']],
